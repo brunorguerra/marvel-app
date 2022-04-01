@@ -1,9 +1,9 @@
+import { useEffect, useState } from "react";
+import api from "../../services/Api";
+
 import { Banner } from "../../Components/Banner";
 import { CardCharacter } from "../../Components/CardCharacter/index";
 import { Container } from "./style";
-
-import { useEffect, useState } from "react";
-import api from "../../services/Api";
 
 interface ResponseData {
     id: string;
@@ -17,14 +17,17 @@ interface ResponseData {
 
 export const Home = () => {
     const [characters, setCharacters] = useState<ResponseData[]>([]);
+    const [totalCharacters, setTotalCharacters] = useState(0);
 
     useEffect(() => {
         api.get("/characters")
             .then((response) => {
                 setCharacters(response.data.data.results);
+                setTotalCharacters(response.data.data.total);
+                console.log(response.data.data.total);
             })
             .catch((error) => console.log(error));
-    }, []);
+    }, [totalCharacters]);
 
     return (
         <>
@@ -34,9 +37,9 @@ export const Home = () => {
                     <p>Page 1</p>
                     <p>
                         Results{" "}
-                        {characters.length < 10
-                            ? `0${characters.length}`
-                            : characters.length}
+                        {totalCharacters < 10
+                            ? `0${totalCharacters}`
+                            : totalCharacters}
                     </p>
                 </div>
                 <div className="contentHome">
@@ -49,7 +52,7 @@ export const Home = () => {
                                     `Hero ${character.name}`
                                 }
                                 urlImage={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                                key={0 + index}
+                                key={character.id}
                             />
                         );
                     })}

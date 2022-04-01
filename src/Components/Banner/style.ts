@@ -26,5 +26,9 @@ export const Container = styled.section`
             top: 0;
             right: 1rem;
         }
+        @media (max-width: 450px) {
+            font-size: 4rem;
+            letter-spacing: initial;
+        }
     }
 `;
