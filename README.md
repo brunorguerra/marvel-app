@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <img alt="Demo" src="./public/application.png">
+  <img alt="Demo" src="./application.png">
 </p>
 
 ## Technologies

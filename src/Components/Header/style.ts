@@ -52,40 +52,25 @@ export const Container = styled.header`
                 font-size: 2rem;
                 color: var(--gray-text);
             }
-            .input {
+            form {
+                height: 4rem;
                 display: flex;
                 align-items: center;
-                .left {
-                    width: 15rem;
-                    height: 4rem;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    label {
-                        display: block;
-                        font-size: 1.3rem;
-                        font-weight: bold;
-                        color: var(--red);
-                        margin-bottom: 0.5rem;
-                    }
-                    input {
-                        height: 0;
-                        width: 100%;
-                        border-bottom: 0.2rem solid var(--red);
-                        outline: 0;
-                        transition: all 0.2s ease;
-                        &:focus {
-                            height: 100%;
-                        }
-                    }
+                justify-content: center;
+                border-radius: 1rem;
+                border: 0;
+                overflow: hidden;
+                border: 0.2rem solid var(--gray-text);
+                input {
+                    font-size: 1.5rem;
+                    outline: none;
+                    height: 100%;
+                    padding: 0 1rem;
                 }
-                .right {
-                    cursor: pointer;
+                button {
                     width: 4rem;
-                    height: 4rem;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+                    height: 100%;
+                    font-size: 0;
                 }
             }
         }
