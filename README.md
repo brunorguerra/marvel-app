@@ -5,7 +5,7 @@
 </h1>
 
 <h4 align="center">
-  Find Character App with React and API Marvel
+  Character Find App with React and API Marvel
 </h4>
 
 <p align="center">
