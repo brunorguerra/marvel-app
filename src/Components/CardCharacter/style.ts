@@ -8,10 +8,11 @@ export const Container = styled.div<PropsImage>`
     width: 28rem;
     border-radius: 0 0 2rem 0;
     overflow: hidden;
+    cursor: pointer;
     .image {
         height: 30rem;
         overflow: hidden;
-        border-bottom: 0.7rem solid var(--red);
+        position: relative;
         .img {
             width: 100%;
             min-height: 100%;
@@ -20,6 +21,33 @@ export const Container = styled.div<PropsImage>`
             background-size: cover;
             background-repeat: no-repeat;
             transition: all 0.2s ease;
+            z-index: 1;
+        }
+        .links {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            z-index: 10;
+
+            width: 100%;
+            height: 100%;
+            transform: translateY(97%);
+            overflow: hidden;
+
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            justify-content: center;
+
+            background-color: var(--red);
+            transition: 0.7s ease;
+            a {
+                text-transform: uppercase;
+                font-size: 2rem;
+                font-weight: bold;
+                color: var(--white-text);
+            }
         }
     }
     .content {
@@ -31,12 +59,16 @@ export const Container = styled.div<PropsImage>`
         flex-direction: column;
         justify-content: space-between;
         h3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
             font-size: 2.2rem;
             font-weight: bold;
             color: var(--white-text);
-            max-width: 50%;
+            max-width: 70%;
         }
-        a {
+        p {
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
@@ -49,6 +81,9 @@ export const Container = styled.div<PropsImage>`
     &:hover .image {
         .img {
             transform: scale(1.1);
+        }
+        .links {
+            transform: translateY(0%);
         }
     }
 `;

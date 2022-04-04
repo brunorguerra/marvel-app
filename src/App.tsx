@@ -1,3 +1,4 @@
+import { Footer } from "./Components/Footer";
 import { Header } from "./Components/Header";
 import { GlobalStyle } from "./Global";
 import { Home } from "./pages/Home";
@@ -8,6 +9,7 @@ function App() {
             <GlobalStyle />
             <Header />
             <Home />
+            <Footer />
         </>
     );
 }

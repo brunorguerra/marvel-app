@@ -52,27 +52,6 @@ export const Container = styled.header`
                 font-size: 2rem;
                 color: var(--gray-text);
             }
-            form {
-                height: 4rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 1rem;
-                border: 0;
-                overflow: hidden;
-                border: 0.2rem solid var(--gray-text);
-                input {
-                    font-size: 1.5rem;
-                    outline: none;
-                    height: 100%;
-                    padding: 0 1rem;
-                }
-                button {
-                    width: 4rem;
-                    height: 100%;
-                    font-size: 0;
-                }
-            }
         }
     }
 `;

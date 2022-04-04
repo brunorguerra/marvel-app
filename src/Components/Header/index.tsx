@@ -1,6 +1,4 @@
 import { Container } from "./style";
-import { BsSearch } from "react-icons/bs";
-import { useState } from "react";
 
 export const Header = () => {
     return (
@@ -25,17 +23,6 @@ export const Header = () => {
             <div className="searchCharacters">
                 <div className="contentBoxSearch">
                     <h2>Find Character</h2>
-                    {/* <form action="">
-                        <input type="text" placeholder="Search character" />
-                        <button
-                            type="submit"
-                            onClick={(e) => {
-                                e.preventDefault();
-                            }}
-                        >
-                            <BsSearch size={20} />
-                        </button>
-                    </form> */}
                 </div>
             </div>
         </Container>
