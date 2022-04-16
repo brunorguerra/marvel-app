@@ -30,6 +30,9 @@ export const Container = styled.section`
                 font-size: 0;
             }
         }
+        @media (max-width: 450px) {
+            justify-content: center;
+        }
     }
     .title {
         width: 100%;

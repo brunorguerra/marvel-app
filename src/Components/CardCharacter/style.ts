@@ -16,10 +16,8 @@ export const Container = styled.div<PropsImage>`
         .img {
             width: 100%;
             min-height: 100%;
-            background-image: url(${(props) => props.image});
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
+            background: var(--red) url(${(props) => props.image}) no-repeat
+                center/cover;
             transition: all 0.2s ease;
             z-index: 1;
         }

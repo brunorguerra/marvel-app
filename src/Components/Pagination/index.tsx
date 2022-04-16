@@ -1,18 +1,17 @@
 import { Container } from "./style";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { useContext } from "react";
+import { CharacterContext } from "../../contexts/CharacterContext";
 
 interface PropsPagination {
-    currentPage: number;
     forwardPage: () => void;
     backPage: () => void;
 }
 
-export const Pagination = ({
-    currentPage,
-    forwardPage,
-    backPage,
-}: PropsPagination) => {
+export const Pagination = ({ forwardPage, backPage }: PropsPagination) => {
+    const { currentPage, totalPage } = useContext(CharacterContext);
+
     return (
         <Container>
             <button onClick={backPage}>

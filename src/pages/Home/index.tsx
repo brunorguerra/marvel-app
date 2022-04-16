@@ -1,21 +1,12 @@
-import { useEffect, useState } from "react";
-import api from "../../services/Api";
-
 import { Banner } from "../../Components/Banner";
 import { CardCharacter } from "../../Components/CardCharacter/index";
 import { Container } from "./style";
 import { Pagination } from "../../Components/Pagination";
+import { useContext } from "react";
+import { CharacterContext } from "../../contexts/CharacterContext";
+import { Loading } from "../../Components/Loading";
 
-interface ResponseData {
-    id: string;
-    name: string;
-    description: string;
-    thumbnail: {
-        path: string;
-        extension: string;
-    };
-    urls: [{ type: string; url: string }];
-}
+import { BiSearch } from "react-icons/bi";
 
 interface PropsInput {
     target: {
@@ -24,26 +15,15 @@ interface PropsInput {
 }
 
 export const Home = () => {
-    const [characters, setCharacters] = useState<ResponseData[]>([]);
-    const [totalCharacters, setTotalCharacters] = useState(0);
-    const [currentPage, setCurrentPage] = useState(0);
-    const [valueInput, setValueInput] = useState("");
-
-    useEffect(() => {
-        api.get("/characters", {
-            params: {
-                offset: 9 * currentPage,
-                nameStartsWith: valueInput || null,
-            },
-        })
-            .then((response) => {
-                console.log(response.data);
-                setCharacters(response.data.data.results);
-                setTotalCharacters(response.data.data.total);
-                currentPage * 9 > totalCharacters ? setCurrentPage(0) : false;
-            })
-            .catch((error) => console.log(error));
-    }, [totalCharacters, currentPage, valueInput]);
+    const {
+        characterList,
+        totalCharacters,
+        isLoading,
+        currentPage,
+        setValueInput,
+        setCurrentPage,
+        setHandleSearch,
+    } = useContext(CharacterContext);
 
     function forwardPage() {
         totalCharacters - (currentPage + 1) * 9 < 0
@@ -53,9 +33,10 @@ export const Home = () => {
     function backPage() {
         currentPage > 0 ? setCurrentPage(currentPage - 1) : setCurrentPage(0);
     }
-
+    function findCharacter() {
+        setHandleSearch(true);
+    }
     function onChange(evInput: PropsInput) {
-        console.log(evInput.target.value);
         setValueInput(evInput.target.value);
     }
 
@@ -64,12 +45,21 @@ export const Home = () => {
             <Banner />
             <Container>
                 <div className="searchInput">
-                    <form action="">
+                    <form
+                        action=""
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            findCharacter();
+                        }}
+                    >
                         <input
                             type="text"
                             placeholder="Search character"
                             onChange={(e) => onChange(e)}
                         />
+                        <button type="submit">
+                            <BiSearch size={30} />
+                        </button>
                     </form>
                 </div>
                 <div className="title">
@@ -82,7 +72,7 @@ export const Home = () => {
                     </p>
                 </div>
                 <div className="contentHome">
-                    {characters.map((character) => {
+                    {characterList.map((character) => {
                         return (
                             <CardCharacter
                                 nameCharacter={character.name}
@@ -96,12 +86,9 @@ export const Home = () => {
                             />
                         );
                     })}
+                    {isLoading && <Loading />}
                 </div>
-                <Pagination
-                    currentPage={currentPage}
-                    forwardPage={forwardPage}
-                    backPage={backPage}
-                />
+                <Pagination forwardPage={forwardPage} backPage={backPage} />
             </Container>
         </>
     );
