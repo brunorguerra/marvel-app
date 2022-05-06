@@ -1,8 +1,8 @@
 import axios from "axios";
 import md5 from "md5";
 
-const publicKey = "c2e039065abc48ccfc575bc6ccd7d982"; // your the public key;
-const privateKey = "a3cec657bc627b4c55cb2e0c9165eb700fd926a6"; // your the private key;
+const publicKey = ""; // your the public key;
+const privateKey = ""; // your the private key;
 
 const ts = Number(new Date());
 const hash = md5(ts + privateKey + publicKey);
